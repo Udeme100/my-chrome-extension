@@ -49,5 +49,4 @@ The project consists of the following files:
 ## Notes
 - The extension requires permission to access and modify browser tabs, which is specified in the `manifest.json` file.
 - Be sure to save any important tabs before using the **Close All Tabs** feature, as they will be closed permanently.
-
-Feel free to extend the functionality and make it your own!
+i need ideas on more functionalities though, feel free to clone and increase the functionalities
