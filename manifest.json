@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Manager Extension",
+  "version": "1.0",
+  "description": "Manage your open tabs - save, close, and restore them easily.",
+  "permissions": ["tabs", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  }
+}
