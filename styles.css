@@ -13,8 +13,21 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button:hover {
   background-color: #0056b3;
+}
+
+#searchTabs {
+  width: calc(100% - 20px);
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.material-icons {
+  margin-right: 5px;
 }
