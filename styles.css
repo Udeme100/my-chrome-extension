@@ -31,3 +31,15 @@ button:hover {
 .material-icons {
   margin-right: 5px;
 }
+
+#searchResults {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.search-result-item {
+  margin: 5px 0;
+  padding: 10px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
