@@ -39,7 +39,22 @@ document.getElementById('searchButton').addEventListener('click', async () => {
   const result = await chrome.storage.local.get('savedTabs');
   const savedTabs = result.savedTabs || [];
   const filteredTabs = savedTabs.filter(url => url.toLowerCase().includes(query));
-  alert(`Found ${filteredTabs.length} matching tabs.`);
+
+  const searchResultsDiv = document.getElementById('searchResults');
+  searchResultsDiv.innerHTML = '';
+  filteredTabs.forEach(url => {
+    const div = document.createElement('div');
+    div.className = 'search-result-item';
+    div.textContent = url;
+    div.addEventListener('click', () => {
+      chrome.tabs.create({ url });
+    });
+    searchResultsDiv.appendChild(div);
+  });
+
+  if (filteredTabs.length === 0) {
+    alert('No matching tabs found.');
+  }
 });
 
 chrome.commands.onCommand.addListener(async (command) => {
