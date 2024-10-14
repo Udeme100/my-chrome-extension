@@ -24,7 +24,7 @@ The Tab Manager Extension is a Chrome extension that helps users manage their br
 ## Usage
 1. Save, Close, and Restore Tabs:
    - Click on the extension icon in the Chrome toolbar to open the popup.
-   - Use the **Save All Tabs, Select Tabs to Save, Close All Tabs, or Select Tabs to Close buttons to manage your tabs.
+   - Use the Save All Tabs, Select Tabs to Save, Close All Tabs, or Select Tabs to Close buttons to manage your tabs.
    - To restore saved tabs, click Restore Saved Tabs.
 
 2. Group Similar Tabs:
