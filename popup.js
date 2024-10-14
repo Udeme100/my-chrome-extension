@@ -15,6 +15,15 @@ document.getElementById('selectSaveTabs').addEventListener('click', async () => 
   alert('Selected tabs saved!');
 });
 
+document.getElementById('selectCloseTabs').addEventListener('click', async () => {
+  const tabs = await chrome.tabs.query({});
+  const selectedTabs = tabs.filter(tab => confirm(`Close tab: ${tab.title}?`));
+  for (const tab of selectedTabs) {
+    await chrome.tabs.remove(tab.id);
+  }
+  alert('Selected tabs closed!');
+});
+
 document.getElementById('closeTabs').addEventListener('click', async () => {
   if (confirm('Are you sure you want to close all tabs?')) {
     const tabs = await chrome.tabs.query({});
