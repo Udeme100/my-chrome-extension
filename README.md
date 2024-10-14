@@ -65,13 +65,13 @@ my-chrome-extension/
 
 ## Improvements
 The following features were added in the recent update:
-1. Grouping Tabs**: Automatically group similar tabs based on their domain to improve organization.
-2. Custom Tags**: Users can add custom tags to categorize saved tabs, making it easier to search and organize.
-3. Tab Statistics**: Track and display the time each tab has been open to help users understand their browsing habits.
+1. Grouping Tabs: Automatically group similar tabs based on their domain to improve organization.
+2. Custom Tags: Users can add custom tags to categorize saved tabs, making it easier to search and organize.
+3. Tab Statistics: Track and display the time each tab has been open to help users understand their browsing habits.
 
 ## Permissions
 The following permissions are used:
-- tabs**To interact with the user's browser tabs (saving, closing, grouping, etc.).
+- tabsTo interact with the user's browser tabs (saving, closing, grouping, etc.).
 - storage: To store saved tabs, tags, and statistics data locally.
 - notifications: To provide notifications for events like auto-saving tabs.
 - tabGroups: To create and manage tab groups for better organization.
