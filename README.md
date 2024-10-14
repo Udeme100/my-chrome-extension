@@ -71,16 +71,16 @@ The following features were added in the recent update:
 
 ## Permissions
 The following permissions are used:
-- tabs**: To interact with the user's browser tabs (saving, closing, grouping, etc.).
-- storage**: To store saved tabs, tags, and statistics data locally.
-- notifications**: To provide notifications for events like auto-saving tabs.
-- tabGroups**: To create and manage tab groups for better organization.
+- tabs**To interact with the user's browser tabs (saving, closing, grouping, etc.).
+- storage: To store saved tabs, tags, and statistics data locally.
+- notifications: To provide notifications for events like auto-saving tabs.
+- tabGroups: To create and manage tab groups for better organization.
 
 ## Technologies Used
-- HTML**: For the extension's user interface.
-- CSS**: To style the popup window.
-- JavaScript**: To handle tab management functionality.
-- Chrome Extensions API**: To interact with the browser tabs and storage.
+- HTML: For the extension's user interface.
+- CSS: To style the popup window.
+- JavaScript: To handle tab management functionality.
+- Chrome Extensions API: To interact with the browser tabs and storage.
 
 ## Notes
 - The extension requires permission to access and modify browser tabs, which is specified in the `manifest.json` file.
@@ -88,6 +88,3 @@ The following permissions are used:
 
 ## Contribution
 Feel free to fork the repository and submit pull requests to add new features or fix issues. Collaboration is always welcome!
-
-## License
-This project is licensed under the MIT License.
