@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Tab Manager Extension",
-  "version": "1.1",
-  "description": "Manage your open tabs - save, close, and restore them easily.",
-  "permissions": ["tabs", "storage", "notifications"],
+  "version": "1.2",
+  "description": "Manage your open tabs - save, close, restore, group, tag, and view statistics easily.",
+  "permissions": ["tabs", "storage", "notifications", "tabGroups"],
   "background": {
     "service_worker": "background.js"
   },
@@ -14,7 +14,6 @@
   "commands": {
     "auto_save_tabs": {
       "suggested_key": "Ctrl+Shift+S",
-      "suggested_key": "Ctrl+Shift+X",
       "description": "Auto-save tabs on close"
     }
   }
