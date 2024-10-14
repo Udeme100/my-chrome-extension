@@ -1,67 +1,93 @@
 # Tab Manager Chrome Extension
 
 ## Overview
-The Tab Manager Extension is a Chrome extension that helps you manage your browser tabs efficiently. It allows you to save, close, and restore tabs easily. It includes features like selective saving and closing of tabs, searching saved tabs, and auto-saving tabs to make tab management intuitive. With additional features like selective saving/closing of tabs, searching saved tabs, and auto-saving tabs, this extension aims to make tab management easy and intuitive.
+The Tab Manager Extension is a Chrome extension that helps users manage their browser tabs efficiently. With this extension, you can save, close, restore, group, tag, and view statistics of your open tabs, providing a better browsing experience.
 
 ## Features
-1. Save All Tabs: Save the URLs of all currently open tabs for future use.
-2. Select Tabs to Save: Choose specific tabs to save instead of saving all tabs.
-3. Close All Tabs: Close all open tabs in the browser with a single click.
-4. Select Tabs to Close: Select specific tabs to close from the current session.
-5. Restore Saved Tabs: Reopen previously saved tabs.
-6. Search Saved Tabs: Search through saved tabs to find specific ones quickly.
-7. Auto-Save Tabs: Automatically save tabs when Chrome is closed, preventing accidental tab loss.
-8. Keyboard Shortcut: Use `Ctrl+Shift+S` to auto-save tabs quickly.
-9. Notifications: Receive notifications when tabs are auto-saved or other actions are performed.
-
-## Folder Structure
-The project contains the following files:
-1. manifest.json: Defines permissions, background scripts, and general settings for the extension.
-2. popup.html: User interface for the extension's popup, featuring buttons to interact with tabs.
-3. popup.js: Manages the logic for saving, closing, searching, and restoring tabs.
-4. styles.css: Provides styling for the extension's user interface, including buttons and search results.
-5. icon.png: Icon used for the extension in the Chrome toolbar.
-6. background.js: Handles background events such as auto-saving tabs when the browser closes.
+1. 1: Save the current session's tabs for later use.
+2. Select Tabs to Save: Allows users to select specific tabs to save, rather than saving all open tabs.
+3. Close All Tabs: Close all currently open tabs in a single click.
+4. Select Tabs to Close: Close specific tabs selected by the user.
+5. Restore Saved Tabs: Reopen previously saved tabs easily.
+6. Group Similar Tabs: Automatically group tabs with similar URLs/domains for better organization.
+7. Save Tabs with Tags: Users can assign custom tags to tabs for better categorization and easy retrieval.
+8. Search Saved Tabs: Search through saved tabs using keywords.
+9. View Tab Statistics: Display usage statistics for tabs, such as how long each tab has been open.
 
 ## Installation
-1. Clone or download the project files.
+1. Clone or download the repository to your local machine.
 2. Open Chrome and navigate to `chrome://extensions/`.
-3. Enable Developer Mode in the top right corner.
-4. Click on 'Load unpacked' and select the project folder.
-5. The extension will now appear in your browser toolbar.
+3. Enable Developer mode in the top right corner.
+4. Click Load unpacked and select the project folder (`my-chrome-extension`).
+5. The extension will appear in your browser toolbar.
 
 ## Usage
-1. Click on the extension icon in the Chrome toolbar to open the extension popup.
-2. Use the available buttons to manage your tabs:
-   - Save All Tabs: Save all currently open tabs.
-   - Select Tabs to Save: Choose specific tabs to save.
-   - Close All Tabs: Close all tabs in the browser.
-   - Select Tabs to Close: Choose specific tabs to close.
-   - Restore Saved Tabs: Restore previously saved tabs.
-   - Search Saved Tabs: Enter a keyword to search for saved tabs.
-3. Auto-Save: Press `Ctrl+Shift+S` to automatically save all open tabs.
-4. Notifications: Notifications will appear when tabs are saved or restored.
+1. Save, Close, and Restore Tabs:
+   - Click on the extension icon in the Chrome toolbar to open the popup.
+   - Use the **Save All Tabs, Select Tabs to Save, Close All Tabs, or Select Tabs to Close buttons to manage your tabs.
+   - To restore saved tabs, click Restore Saved Tabs.
+
+2. Group Similar Tabs:
+   - Click on Group Similar Tabs to automatically organize tabs based on their domain.
+
+3. Save Tabs with Tags:
+   - Click on Save Tabs with Tags to add custom tags to tabs for better organization.
+
+4. Search Saved Tabs:
+   - Use the search bar to find specific tabs from your saved sessions.
+
+5. View Tab Statistics:
+   - Click on View Tab Statistics to see how long each tab has been open.
+
+## Folder Structure
+The project folder structure is as follows:
+```
+my-chrome-extension/
+ ├── manifest.json          // Configuration file for the Chrome extension
+ ├── popup.html             // User Interface for the extension
+ ├── popup.js               // JavaScript file containing the logic for tab management
+ ├── styles.css             // CSS file for styling the extension's UI
+ ├── icon.png               // Icon for the extension
+ └── background.js          // Handles background events like auto-save
+```
 
 ## Technical Details
-1. manifest.json: Configures permissions like `tabs`, `storage`, and `notifications`. Defines the extension’s UI popup and background service worker (`background.js`).
-2. popup.js: Manages tab operations such as saving, closing, restoring, and searching tabs. Uses Chrome's `tabs` and `storage` APIs and includes logic for selectively managing tabs.
-3. background.js: Automatically saves all open tabs when the browser starts or closes. Uses Chrome notifications to inform the user about saved tabs.
+- manifest.json:
+  - Contains the configuration for the extension, including permissions (`tabs`, `storage`, `notifications`, `tabGroups`) and the service worker (`background.js`).
+- popup.js:
+  - Handles button click events for saving, closing, restoring, grouping, tagging, and displaying tab statistics.
+  - Uses Chrome's `tabs` and `storage` APIs to interact with browser tabs and store URLs and metadata.
+- background.js:
+  - Runs in the background to handle actions like auto-saving tabs.
+- popup.html and styles.css:
+  - Provides a user-friendly interface for managing tabs.
+  - The UI includes buttons for all actions, and the CSS ensures a clean, visually appealing look.
+
+## Improvements
+The following features were added in the recent update:
+1. Grouping Tabs**: Automatically group similar tabs based on their domain to improve organization.
+2. Custom Tags**: Users can add custom tags to categorize saved tabs, making it easier to search and organize.
+3. Tab Statistics**: Track and display the time each tab has been open to help users understand their browsing habits.
+
+## Permissions
+The following permissions are used:
+- tabs**: To interact with the user's browser tabs (saving, closing, grouping, etc.).
+- storage**: To store saved tabs, tags, and statistics data locally.
+- notifications**: To provide notifications for events like auto-saving tabs.
+- tabGroups**: To create and manage tab groups for better organization.
 
 ## Technologies Used
-1. HTML: For building the user interface of the popup.
-2. CSS: For styling the user interface components.
-3. JavaScript: For handling tab management logic.
-4. Chrome Extensions API: To interact with browser tabs and trigger background scripts.
+- HTML**: For the extension's user interface.
+- CSS**: To style the popup window.
+- JavaScript**: To handle tab management functionality.
+- Chrome Extensions API**: To interact with the browser tabs and storage.
 
 ## Notes
-- The extension requires access to the `tabs` and `storage` APIs, which are defined in the `manifest.json` file.
-- Save important tabs before using the Close All Tabs feature, as they will be permanently closed.
-- The Select Tabs to Save and Select Tabs to Close features provide a confirmation prompt for each tab to ensure correct tabs are managed.
+- The extension requires permission to access and modify browser tabs, which is specified in the `manifest.json` file.
+- Be cautious when using the **Close All Tabs** feature, as tabs will be closed permanently unless saved.
 
-## Future Improvements
-1. Grouping Tabs: Automatically group similar tabs for better organization.
-2. Custom Tags: Allow users to tag and categorize saved tabs.
-3. Tab Statistics: Display usage statistics for tabs, such as how long each tab has been open.
+## Contribution
+Feel free to fork the repository and submit pull requests to add new features or fix issues. Collaboration is always welcome!
 
-Feel free to contribute to the project by adding new features or improving existing functionalities!
-
+## License
+This project is licensed under the MIT License.
