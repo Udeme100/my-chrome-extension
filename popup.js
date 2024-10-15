@@ -1,3 +1,4 @@
+// Save all tabs
 document.getElementById('saveTabs').addEventListener('click', async () => {
   const tabs = await chrome.tabs.query({});
   const tabUrls = tabs.map(tab => tab.url);
@@ -6,6 +7,7 @@ document.getElementById('saveTabs').addEventListener('click', async () => {
   alert('Tabs saved!');
 });
 
+// Select and save tabs
 document.getElementById('selectSaveTabs').addEventListener('click', async () => {
   const tabs = await chrome.tabs.query({});
   const selectedTabs = tabs.filter(tab => confirm(`Save tab: ${tab.title}?`));
@@ -15,6 +17,7 @@ document.getElementById('selectSaveTabs').addEventListener('click', async () => 
   alert('Selected tabs saved!');
 });
 
+// Select and close tabs
 document.getElementById('selectCloseTabs').addEventListener('click', async () => {
   const tabs = await chrome.tabs.query({});
   const selectedTabs = tabs.filter(tab => confirm(`Close tab: ${tab.title}?`));
@@ -24,6 +27,7 @@ document.getElementById('selectCloseTabs').addEventListener('click', async () =>
   alert('Selected tabs closed!');
 });
 
+// Close all tabs
 document.getElementById('closeTabs').addEventListener('click', async () => {
   if (confirm('Are you sure you want to close all tabs?')) {
     const tabs = await chrome.tabs.query({});
@@ -34,6 +38,7 @@ document.getElementById('closeTabs').addEventListener('click', async () => {
   }
 });
 
+// Restore saved tabs
 document.getElementById('restoreTabs').addEventListener('click', async () => {
   const result = await chrome.storage.local.get('savedTabs');
   const savedTabs = result.savedTabs || [];
@@ -43,6 +48,7 @@ document.getElementById('restoreTabs').addEventListener('click', async () => {
   alert('Tabs restored!');
 });
 
+// Search saved tabs
 document.getElementById('searchButton').addEventListener('click', async () => {
   const query = document.getElementById('searchTabs').value.toLowerCase();
   const result = await chrome.storage.local.get('savedTabs');
@@ -102,29 +108,46 @@ document.getElementById('saveTabsWithTagsButton').addEventListener('click', asyn
   alert('Tabs with tags saved!');
 });
 
-// View tab statistics
+// Tab statistics tracking
 const tabStats = {};
 
-chrome.tabs.onActivated.addListener(activeInfo => {
+// Track when a tab is activated (opened or switched to)
+chrome.tabs.onActivated.addListener(async activeInfo => {
   const tabId = activeInfo.tabId;
+  const tab = await chrome.tabs.get(tabId);
+
   if (!tabStats[tabId]) {
-    tabStats[tabId] = { openedAt: Date.now() };
+    tabStats[tabId] = { 
+      title: tab.title, 
+      url: tab.url, 
+      openedAt: Date.now() 
+    };
   }
 });
 
+// Track when a tab is closed
 chrome.tabs.onRemoved.addListener(tabId => {
   if (tabStats[tabId]) {
     const openTime = Date.now() - tabStats[tabId].openedAt;
-    console.log(`Tab ${tabId} was open for ${openTime / 1000} seconds.`);
+    console.log(`Tab "${tabStats[tabId].title}" (${tabStats[tabId].url}) was open for ${openTime / 1000} seconds.`);
     delete tabStats[tabId];
   }
 });
 
+// View tab statistics
 document.getElementById('viewStatisticsButton').addEventListener('click', () => {
   let statsMessage = 'Tab Statistics:\n';
+  
   for (const tabId in tabStats) {
     const openTime = (Date.now() - tabStats[tabId].openedAt) / 1000;
-    statsMessage += `Tab ID ${tabId}: Open for ${openTime.toFixed(2)} seconds\n`;
+    statsMessage += `Tab: ${tabStats[tabId].title}\n`;
+    statsMessage += `URL: ${tabStats[tabId].url}\n`;
+    statsMessage += `Open for: ${openTime.toFixed(2)} seconds\n\n`;
   }
+
+  if (Object.keys(tabStats).length === 0) {
+    statsMessage = 'No tab statistics available.';
+  }
+
   alert(statsMessage);
 });
