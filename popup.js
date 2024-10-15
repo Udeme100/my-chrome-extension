@@ -51,10 +51,25 @@ document.getElementById('restoreTabs').addEventListener('click', async () => {
 // Search saved tabs
 document.getElementById('searchButton').addEventListener('click', async () => {
   const query = document.getElementById('searchTabs').value.toLowerCase();
+  
+  // Retrieve saved tabs from storage
   const result = await chrome.storage.local.get('savedTabs');
   const savedTabs = result.savedTabs || [];
-  const filteredTabs = savedTabs.filter(url => url.toLowerCase().includes(query));
 
+  // Check if savedTabs is an array or an object
+  let savedTabUrls = [];
+
+  if (Array.isArray(savedTabs)) {
+    savedTabUrls = savedTabs;  // If it's an array, use it directly
+  } else {
+    // If it's an object (key-value pairs), extract the URLs
+    savedTabUrls = Object.keys(savedTabs);
+  }
+
+  // Filter the tabs based on the search query
+  const filteredTabs = savedTabUrls.filter(url => url.toLowerCase().includes(query));
+
+  // Display the filtered results
   const searchResultsDiv = document.getElementById('searchResults');
   searchResultsDiv.innerHTML = '';
   filteredTabs.forEach(url => {
